@@ -843,7 +843,7 @@ ScriptsOnlyBuild:
     className: OnScreenStick
   - hash:
       serializedVersion: 2
-      Hash: a99c7eeeb072196a746e0c3c4faec378
+      Hash: 3d94e4ec881bd859be6f920e0136b00c
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: GameManager

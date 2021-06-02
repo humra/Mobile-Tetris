@@ -9,6 +9,8 @@ public class GameManager : MonoBehaviour, IActivePieceControl, ISwipeDetectionCo
     [SerializeField]
     private GameObject pauseUI;
     [SerializeField]
+    private GameObject gameOverUI;
+    [SerializeField]
     private Text scoreTxt;
     [SerializeField]
     private PlayAreaManager playAreaManager;
@@ -20,6 +22,8 @@ public class GameManager : MonoBehaviour, IActivePieceControl, ISwipeDetectionCo
     private Spawner spawner;
     [SerializeField]
     private SoundEffectManager soundEffectManager;
+    [SerializeField]
+    private Text gameOverScoreTxt;
 
     private ActivePieceManager activePieceManager;
     private bool isGamePaused = false;
@@ -33,6 +37,7 @@ public class GameManager : MonoBehaviour, IActivePieceControl, ISwipeDetectionCo
     private void Start()
     {
         TogglePauseUI();
+        ToggleGameOverUI();
         SpawnNextPiece();
         UpdateGameUI();
     }
@@ -40,6 +45,11 @@ public class GameManager : MonoBehaviour, IActivePieceControl, ISwipeDetectionCo
     private void TogglePauseUI()
     {
         pauseUI.SetActive(!pauseUI.activeSelf);
+    }
+
+    private void ToggleGameOverUI()
+    {
+        gameOverUI.SetActive(!gameOverUI.activeSelf);
     }
 
     private void ToggleGameUI()
@@ -87,7 +97,12 @@ public class GameManager : MonoBehaviour, IActivePieceControl, ISwipeDetectionCo
 
     public void GameOver()
     {
-        Debug.LogError("GAME OVER!");
+        isGamePaused = true;
+        activePieceManager.SetPaused(true);
+        soundEffectManager.PlaySoundEffect(SoundEffects.GameOver);
+        ToggleGameUI();
+        gameOverScoreTxt.text = "You scored " + score;
+        ToggleGameOverUI();
     }
 
     public void RowsRemoved(int numberRemoved)
