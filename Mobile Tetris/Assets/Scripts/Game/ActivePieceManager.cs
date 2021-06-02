@@ -8,11 +8,19 @@ public class ActivePieceManager : MonoBehaviour
     private float lastFall;
 
     public IActivePieceControl activePieceControl;
-    public bool isGamePaused = true;
+
+    private void Start()
+    {
+        if(IsOutOfBounds() && !IsValidGridPosition())
+        {
+            Debug.Log("Game Over!");
+            activePieceControl.GameOver();
+        }
+    }
 
     private void Update()
     {
-        if(!isGamePaused && Time.time - lastFall >= autoFallInterval)
+        if(Time.time - lastFall >= autoFallInterval)
         {
             MovePiece(MoveDirection.Drop);
         }
@@ -39,6 +47,21 @@ public class ActivePieceManager : MonoBehaviour
         }
 
         return true;
+    }
+
+    private bool IsOutOfBounds()
+    {
+        foreach (Transform child in this.transform)
+        {
+            Vector2 childVector = PlayAreaManager.FixVector2(child.position);
+
+            if(PlayAreaManager.IsOutOfBounds((int)childVector.x, (int)childVector.y))
+            {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     private void UpdatePlayAreaGrid()
@@ -103,8 +126,14 @@ public class ActivePieceManager : MonoBehaviour
                 else
                 {
                     transform.position += new Vector3(0, 1, 0);
-                    PlayAreaManager.RemoveFilledRows();
+                    activePieceControl.RowsRemoved(PlayAreaManager.RemoveFilledRows());
                     activePieceControl.SpawnNextPiece();
+                    
+                    if(IsOutOfBounds())
+                    {
+                        activePieceControl.GameOver();
+                    }
+
                     this.enabled = false;
                 }
                 lastFall = Time.time;

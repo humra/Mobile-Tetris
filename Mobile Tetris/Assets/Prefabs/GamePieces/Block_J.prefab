@@ -48,6 +48,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   autoFallInterval: 1
+  isGamePaused: 1
 --- !u!1001 &1815532168090094700
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -69,7 +70,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4736283461818210003, guid: e188229f8e9cd244085ba3ede514f6f1, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 4736283461818210003, guid: e188229f8e9cd244085ba3ede514f6f1, type: 3}
       propertyPath: m_LocalPosition.z
@@ -131,7 +132,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4736283461818210003, guid: e188229f8e9cd244085ba3ede514f6f1, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 4736283461818210003, guid: e188229f8e9cd244085ba3ede514f6f1, type: 3}
       propertyPath: m_LocalPosition.z
@@ -193,7 +194,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4736283461818210003, guid: e188229f8e9cd244085ba3ede514f6f1, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4736283461818210003, guid: e188229f8e9cd244085ba3ede514f6f1, type: 3}
       propertyPath: m_LocalPosition.z

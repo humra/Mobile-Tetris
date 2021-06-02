@@ -43,7 +43,17 @@ public class GameManager : MonoBehaviour, IActivePieceControl, ISwipeDetectionCo
         GameObject newPiece = spawner.SpawnPiece();
         activePieceManager = newPiece.GetComponent<ActivePieceManager>();
         activePieceManager.activePieceControl = this;
-        activePieceManager.isGamePaused = false;
+    }
+
+    public void GameOver()
+    {
+        Debug.LogError("GAME OVER!");
+    }
+
+    public void RowsRemoved(int numberRemoved)
+    {
+        //TO-DO
+        //ADD SCORE
     }
 
     public void MovePiece(MoveDirection moveDirection)
@@ -55,6 +65,8 @@ public class GameManager : MonoBehaviour, IActivePieceControl, ISwipeDetectionCo
 public interface IActivePieceControl
 {
     public void SpawnNextPiece();
+    public void GameOver();
+    public void RowsRemoved(int numberRemoved);
 }
 
 public interface ISwipeDetectionControl

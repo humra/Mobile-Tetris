@@ -11,7 +11,7 @@
                     "id": "f198f30b-6de6-477b-94af-02f6870c3862",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "Press"
                 },
                 {
                     "name": "PrimaryPosition",
@@ -27,7 +27,7 @@
                     "name": "",
                     "id": "e21c1fed-06e9-488e-a599-bd36e29e82f7",
                     "path": "<Touchscreen>/primaryTouch/press",
-                    "interactions": "Press",
+                    "interactions": "",
                     "processors": "",
                     "groups": "",
                     "action": "PrimaryContact",
@@ -38,7 +38,7 @@
                     "name": "",
                     "id": "018b91ac-c206-47da-804d-1271ae8e2f28",
                     "path": "<Touchscreen>/primaryTouch/position",
-                    "interactions": "",
+                    "interactions": "Press(behavior=1)",
                     "processors": "",
                     "groups": "",
                     "action": "PrimaryPosition",

@@ -1,4 +1,4 @@
-// GENERATED AUTOMATICALLY FROM 'Assets/Scripts/Input Actions/TouchControls.inputactions'
+// GENERATED AUTOMATICALLY FROM 'Assets/Scripts/Input Controls/TouchControls.inputactions'
 
 using System;
 using System.Collections;
@@ -24,7 +24,7 @@ public class @TouchControls : IInputActionCollection, IDisposable
                     ""id"": ""f198f30b-6de6-477b-94af-02f6870c3862"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
-                    ""interactions"": """"
+                    ""interactions"": ""Press""
                 },
                 {
                     ""name"": ""PrimaryPosition"",
@@ -40,7 +40,7 @@ public class @TouchControls : IInputActionCollection, IDisposable
                     ""name"": """",
                     ""id"": ""e21c1fed-06e9-488e-a599-bd36e29e82f7"",
                     ""path"": ""<Touchscreen>/primaryTouch/press"",
-                    ""interactions"": ""Press"",
+                    ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""PrimaryContact"",
@@ -51,7 +51,7 @@ public class @TouchControls : IInputActionCollection, IDisposable
                     ""name"": """",
                     ""id"": ""018b91ac-c206-47da-804d-1271ae8e2f28"",
                     ""path"": ""<Touchscreen>/primaryTouch/position"",
-                    ""interactions"": """",
+                    ""interactions"": ""Press(behavior=1)"",
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""PrimaryPosition"",
