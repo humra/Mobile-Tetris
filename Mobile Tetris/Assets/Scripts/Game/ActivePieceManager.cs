@@ -6,6 +6,7 @@ public class ActivePieceManager : MonoBehaviour
     private float autoFallInterval = 1f;
 
     private float lastFall;
+    private bool isGamePaused = false;
 
     public IActivePieceControl activePieceControl;
 
@@ -20,7 +21,7 @@ public class ActivePieceManager : MonoBehaviour
 
     private void Update()
     {
-        if(Time.time - lastFall >= autoFallInterval)
+        if(Time.time - lastFall >= autoFallInterval && !isGamePaused)
         {
             MovePiece(MoveDirection.Drop);
         }
@@ -151,6 +152,11 @@ public class ActivePieceManager : MonoBehaviour
                 }
                 break;
         }
+    }
+
+    public void SetPaused(bool paused)
+    {
+        isGamePaused = paused;
     }
 }
 

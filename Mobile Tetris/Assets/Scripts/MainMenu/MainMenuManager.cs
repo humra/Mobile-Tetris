@@ -52,11 +52,13 @@ public class MainMenuManager : MonoBehaviour
         if(music)
         {
             musicBtn.GetComponent<Image>().sprite = musicOnSprite;
+            audioMixer.SetFloat("MusicVolume", 0f);
             PlayerPrefs.SetInt("MusicVolume", 1);
         }
         else
         {
             musicBtn.GetComponent<Image>().sprite = musicOffSprite;
+            audioMixer.SetFloat("MusicVolume", -80f);
             PlayerPrefs.SetInt("MusicVolume", 0);
         }
     }

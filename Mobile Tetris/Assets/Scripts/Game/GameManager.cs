@@ -1,4 +1,6 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour, IActivePieceControl, ISwipeDetectionControl
 {
@@ -7,6 +9,8 @@ public class GameManager : MonoBehaviour, IActivePieceControl, ISwipeDetectionCo
     [SerializeField]
     private GameObject pauseUI;
     [SerializeField]
+    private Text scoreTxt;
+    [SerializeField]
     private PlayAreaManager playAreaManager;
     [SerializeField]
     private InputManager inputManager;
@@ -14,8 +18,12 @@ public class GameManager : MonoBehaviour, IActivePieceControl, ISwipeDetectionCo
     private SwipeDetection swipeDetection;
     [SerializeField]
     private Spawner spawner;
+    [SerializeField]
+    private SoundEffectManager soundEffectManager;
 
     private ActivePieceManager activePieceManager;
+    private bool isGamePaused = false;
+    private int score = 0;
 
     private void Awake()
     {
@@ -26,6 +34,7 @@ public class GameManager : MonoBehaviour, IActivePieceControl, ISwipeDetectionCo
     {
         TogglePauseUI();
         SpawnNextPiece();
+        UpdateGameUI();
     }
 
     private void TogglePauseUI()
@@ -33,9 +42,40 @@ public class GameManager : MonoBehaviour, IActivePieceControl, ISwipeDetectionCo
         pauseUI.SetActive(!pauseUI.activeSelf);
     }
 
+    private void ToggleGameUI()
+    {
+        gameUI.SetActive(!gameUI.activeSelf);
+    }
+
+    private void UpdateGameUI()
+    {
+        scoreTxt.text = score.ToString();
+    }
+
     public void PauseGame()
     {
-        //TO-DO
+        isGamePaused = true;
+        activePieceManager.SetPaused(isGamePaused);
+        TogglePauseUI();
+        ToggleGameUI();
+    }
+
+    public void ResumeGame()
+    {
+        isGamePaused = false;
+        activePieceManager.SetPaused(isGamePaused);
+        TogglePauseUI();
+        ToggleGameUI();
+    }
+
+    public void RestartGame()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    public void QuitGame()
+    {
+        SceneManager.LoadScene("Main Menu");
     }
 
     public void SpawnNextPiece()
@@ -52,13 +92,47 @@ public class GameManager : MonoBehaviour, IActivePieceControl, ISwipeDetectionCo
 
     public void RowsRemoved(int numberRemoved)
     {
-        //TO-DO
-        //ADD SCORE
+        if(numberRemoved > 0)
+        {
+            soundEffectManager.PlaySoundEffect(SoundEffects.RemoveRow);
+        }
+
+        switch (numberRemoved)
+        {
+            case 0:
+                break;
+            case 1:
+                score += 100;
+                break;
+            case 2:
+                score += 400;
+                break;
+            case 3:
+                score += 1000;
+                break;
+            default:
+                score += 3000;
+                break;
+        }
+
+        UpdateGameUI();
     }
 
     public void MovePiece(MoveDirection moveDirection)
     {
-        activePieceManager.MovePiece(moveDirection);
+        if(!isGamePaused)
+        {
+            activePieceManager.MovePiece(moveDirection);
+            
+            if(moveDirection == MoveDirection.Rotate)
+            {
+                soundEffectManager.PlaySoundEffect(SoundEffects.RotatePiece);
+            }
+            else
+            {
+                soundEffectManager.PlaySoundEffect(SoundEffects.MovePiece);
+            }
+        }
     }
 }
 

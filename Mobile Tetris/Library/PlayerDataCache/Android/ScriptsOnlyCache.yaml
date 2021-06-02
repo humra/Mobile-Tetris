@@ -6,6 +6,7 @@ ScriptsOnlyBuild:
     - InputManager
     - MainMenuManager
     - PlayAreaManager
+    - SoundEffectManager
     - Spawner
     - SwipeDetection
     Unity.2D.Animation.Editor.dll:
@@ -60,6 +61,10 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 81
       Script: {instanceID: 0}
+    - Class: 82
+      Script: {instanceID: 0}
+    - Class: 83
+      Script: {instanceID: 0}
     - Class: 104
       Script: {instanceID: 0}
     - Class: 114
@@ -92,6 +97,8 @@ ScriptsOnlyBuild:
       Script: {instanceID: 4954}
     - Class: 114
       Script: {instanceID: 5522}
+    - Class: 114
+      Script: {instanceID: 5736}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -110,6 +117,12 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 224
       Script: {instanceID: 0}
+    - Class: 241
+      Script: {instanceID: 0}
+    - Class: 243
+      Script: {instanceID: 0}
+    - Class: 245
+      Script: {instanceID: 0}
     Assets/Scenes/Main Menu.unity:
     - Class: 1
       Script: {instanceID: 0}
@@ -124,6 +137,10 @@ ScriptsOnlyBuild:
     - Class: 48
       Script: {instanceID: 0}
     - Class: 81
+      Script: {instanceID: 0}
+    - Class: 82
+      Script: {instanceID: 0}
+    - Class: 83
       Script: {instanceID: 0}
     - Class: 104
       Script: {instanceID: 0}
@@ -162,6 +179,12 @@ ScriptsOnlyBuild:
     - Class: 223
       Script: {instanceID: 0}
     - Class: 224
+      Script: {instanceID: 0}
+    - Class: 241
+      Script: {instanceID: 0}
+    - Class: 243
+      Script: {instanceID: 0}
+    - Class: 245
       Script: {instanceID: 0}
   scriptHashData:
   - hash:
@@ -424,7 +447,7 @@ ScriptsOnlyBuild:
     className: TestResultRendererCallback
   - hash:
       serializedVersion: 2
-      Hash: a3a83f72fc3b08bc3ea2ada8b7bca205
+      Hash: 74f34b83f41c2df7d6f51c6fe6e8e235
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: MainMenuManager
@@ -820,7 +843,7 @@ ScriptsOnlyBuild:
     className: OnScreenStick
   - hash:
       serializedVersion: 2
-      Hash: b72d1c2fb0235970baf577fd378ba317
+      Hash: a99c7eeeb072196a746e0c3c4faec378
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: GameManager
@@ -836,6 +859,12 @@ ScriptsOnlyBuild:
     assemblyName: Unity.TextMeshPro.dll
     namespaceName: TMPro
     className: TMP_ScrollbarEventHandler
+  - hash:
+      serializedVersion: 2
+      Hash: 2fa54079cd25b4156535c68e48b97e33
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: SoundEffectManager
   - hash:
       serializedVersion: 2
       Hash: 285f5d7c369d870b93f4a2cbcec118e4
