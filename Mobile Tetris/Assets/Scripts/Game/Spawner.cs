@@ -5,10 +5,10 @@ public class Spawner : MonoBehaviour
     [SerializeField]
     private GameObject[] spawnablePieces;
 
-    public void SpawnPiece()
+    public GameObject SpawnPiece()
     {
         int randomIndex = Random.Range(0, spawnablePieces.Length);
 
-        Instantiate(spawnablePieces[randomIndex], transform.position, Quaternion.identity);
+        return Instantiate(spawnablePieces[randomIndex], transform.position, Quaternion.identity);
     }
 }

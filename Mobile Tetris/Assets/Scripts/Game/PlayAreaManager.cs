@@ -24,7 +24,6 @@ public class PlayAreaManager : MonoBehaviour
             if(IsRowFilled(y))
             {
                 DeleteRow(y);
-                DeleteRow(y);
                 rowsRemoved++;
                 y--;
             }

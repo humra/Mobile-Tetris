@@ -2,6 +2,22 @@ using UnityEngine;
 
 public class ActivePieceManager : MonoBehaviour
 {
+    [SerializeField]
+    private float autoFallInterval = 1f;
+
+    private float lastFall;
+
+    public IActivePieceControl activePieceControl;
+    public bool isGamePaused = true;
+
+    private void Update()
+    {
+        if(!isGamePaused && Time.time - lastFall >= autoFallInterval)
+        {
+            MovePiece(MoveDirection.Drop);
+        }
+    }
+
     private bool IsValidGridPosition()
     {
         foreach(Transform child in this.transform)
@@ -27,12 +43,10 @@ public class ActivePieceManager : MonoBehaviour
 
     private void UpdatePlayAreaGrid()
     {
-        //TO-DO
-        //CHECK IF NEEDS CHANGING TO ++Y
         //Removes old children from playAreaGrid
-        for(int y = 0; y < PlayAreaManager.fieldHeight; y++)
+        for(int y = 0; y < PlayAreaManager.fieldHeight; ++y)
         {
-            for(int x = 0; x < PlayAreaManager.fieldWidth; x++)
+            for(int x = 0; x < PlayAreaManager.fieldWidth; ++x)
             {
                 if(PlayAreaManager.playAreaGrid[x, y] != null)
                 {
@@ -51,4 +65,70 @@ public class ActivePieceManager : MonoBehaviour
             PlayAreaManager.playAreaGrid[(int)childVector.x, (int)childVector.y] = child;
         }
     }
+
+    public void MovePiece(MoveDirection direction)
+    {
+        switch(direction)
+        {
+            case MoveDirection.Left:
+                transform.position += new Vector3(-1, 0, 0);
+                if(IsValidGridPosition())
+                {
+                    UpdatePlayAreaGrid();
+                }
+                else
+                {
+                    transform.position += new Vector3(1, 0, 0);
+                }
+                break;
+
+            case MoveDirection.Right:
+                transform.position += new Vector3(1, 0, 0);
+                if (IsValidGridPosition())
+                {
+                    UpdatePlayAreaGrid();
+                }
+                else
+                {
+                    transform.position += new Vector3(-1, 0, 0);
+                }
+                break;
+
+            case MoveDirection.Drop:
+                transform.position += new Vector3(0, -1, 0);
+                if(IsValidGridPosition())
+                {
+                    UpdatePlayAreaGrid();
+                }
+                else
+                {
+                    transform.position += new Vector3(0, 1, 0);
+                    PlayAreaManager.RemoveFilledRows();
+                    activePieceControl.SpawnNextPiece();
+                    this.enabled = false;
+                }
+                lastFall = Time.time;
+                break;
+
+            case MoveDirection.Rotate:
+                transform.Rotate(0, 0, 90);
+                if(IsValidGridPosition())
+                {
+                    UpdatePlayAreaGrid();
+                }
+                else
+                {
+                    transform.Rotate(0, 0, -90);
+                }
+                break;
+        }
+    }
+}
+
+public enum MoveDirection
+{
+    Left,
+    Right,
+    Rotate,
+    Drop
 }

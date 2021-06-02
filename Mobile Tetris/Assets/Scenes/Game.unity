@@ -168,7 +168,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 12117849}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 23, z: 0}
+  m_LocalPosition: {x: 5, y: 16, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -222,6 +222,7 @@ GameObject:
   - component: {fileID: 591076629}
   - component: {fileID: 591076631}
   - component: {fileID: 591076630}
+  - component: {fileID: 591076632}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -257,6 +258,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameUI: {fileID: 2126159711}
   pauseUI: {fileID: 205658638}
+  playAreaManager: {fileID: 591076629}
+  inputManager: {fileID: 591076631}
+  swipeDetection: {fileID: 591076630}
+  spawner: {fileID: 12117850}
 --- !u!114 &591076629
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -281,9 +286,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e19d14d995955024d99422827c8cd3ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minimumSwipeDistance: 0.25
+  minimumSwipeDistance: 0.1
   maximumSwipeDuration: 1
   inputManager: {fileID: 591076631}
+  directionThreshold: 0.9
 --- !u!114 &591076631
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -296,6 +302,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3624a0fd3ed3da43818264e7924d786, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &591076632
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 591076626}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ec61674aee08154c85348d1a9a4d102, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  autoFallInterval: 1
+  isGamePaused: 1
 --- !u!1 &1148106458
 GameObject:
   m_ObjectHideFlags: 0
@@ -474,7 +494,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1482297635}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 11.5, z: -10}
+  m_LocalPosition: {x: 5, y: 11.5, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -807,11 +827,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4644603073158988346, guid: de2c4bdb17429c64ba651236c77c4922, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 4.5
       objectReference: {fileID: 0}
     - target: {fileID: 4644603073158988346, guid: de2c4bdb17429c64ba651236c77c4922, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 11
+      value: 10.5
       objectReference: {fileID: 0}
     - target: {fileID: 4644603073158988346, guid: de2c4bdb17429c64ba651236c77c4922, type: 3}
       propertyPath: m_LocalPosition.z
