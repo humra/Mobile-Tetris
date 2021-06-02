@@ -2,11 +2,6 @@ using UnityEngine;
 
 public class ActivePieceManager : MonoBehaviour
 {
-    private void Update()
-    {
-        
-    }
-
     private bool IsValidGridPosition()
     {
         foreach(Transform child in this.transform)
