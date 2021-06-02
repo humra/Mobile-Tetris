@@ -1,18 +1,24 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField]
+    private GameObject gameUI;
+    [SerializeField]
+    private GameObject pauseUI;
+
+    private void Start()
     {
-        
+        TogglePauseUI();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void TogglePauseUI()
     {
-        
+        pauseUI.SetActive(!pauseUI.activeSelf);
+    }
+
+    public void PauseGame()
+    {
+        //TO-DO
     }
 }

@@ -11,10 +11,10 @@ public class MainMenuManager : MonoBehaviour
 
     void Start()
     {
-        settingsElements.SetActive(false);
+        ToggleSettingsVisibility();
     }
 
-    public void ChangeSettingsVisibility()
+    public void ToggleSettingsVisibility()
     {
         settingsElements.SetActive(!settingsElements.activeSelf);
     }
