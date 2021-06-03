@@ -7,11 +7,13 @@ public class ActivePieceManager : MonoBehaviour
 
     private float lastFall;
     private bool isGamePaused = false;
+    private float defaultAutoFallInterval;
 
     public IActivePieceControl activePieceControl;
 
     private void Start()
     {
+        defaultAutoFallInterval = autoFallInterval;
         if(!IsAllowedSpawn())
         {
             activePieceControl.GameOver();
@@ -166,12 +168,21 @@ public class ActivePieceManager : MonoBehaviour
                     transform.Rotate(0, 0, -90);
                 }
                 break;
+
+            case MoveDirection.DropFast:
+                autoFallInterval = 0.05f;
+                break;
         }
     }
 
     public void SetPaused(bool paused)
     {
         isGamePaused = paused;
+    }
+
+    public void SetAutoFallInterval(float autoFallIntervalFactor)
+    {
+        autoFallInterval *= autoFallIntervalFactor;
     }
 }
 
@@ -180,5 +191,6 @@ public enum MoveDirection
     Left,
     Right,
     Rotate,
-    Drop
+    Drop,
+    DropFast
 }

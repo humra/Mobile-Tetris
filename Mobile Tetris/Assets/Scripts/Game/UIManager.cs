@@ -42,9 +42,9 @@ public class UIManager : MonoBehaviour
         scoreTxt.text = score.ToString();
     }
 
-    public void AddScore(int score)
+    public void SetScore(int score)
     {
-        this.score += score;
+        this.score = score;
     }
 
     public void GameOver()

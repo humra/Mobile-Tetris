@@ -67,7 +67,7 @@ public class SwipeDetection : MonoBehaviour
         }
         else if (Vector2.Dot(Vector2.down, direction) >= directionThreshold)
         {
-            swipeDetectionControl.MovePiece(MoveDirection.Drop);
+            swipeDetectionControl.MovePiece(MoveDirection.DropFast);
         }
         else if (Vector2.Dot(Vector2.up, direction) >= directionThreshold)
         {

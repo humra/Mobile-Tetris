@@ -19,7 +19,7 @@ public class GameManager : MonoBehaviour, IActivePieceControl, ISwipeDetectionCo
 
     private ActivePieceManager activePieceManager;
     private bool isGamePaused = false;
-    
+    private int score = 0;
 
     private void Awake()
     {
@@ -91,19 +91,20 @@ public class GameManager : MonoBehaviour, IActivePieceControl, ISwipeDetectionCo
             case 0:
                 break;
             case 1:
-                uiManager.AddScore(100);
+                score += 100;
                 break;
             case 2:
-                uiManager.AddScore(400);
+                score += 400;
                 break;
             case 3:
-                uiManager.AddScore(1000);
+                score += 1000;
                 break;
             default:
-                uiManager.AddScore(3000);
+                score += 3000;
                 break;
         }
 
+        uiManager.SetScore(score);
         uiManager.UpdateGameUI();
     }
 
