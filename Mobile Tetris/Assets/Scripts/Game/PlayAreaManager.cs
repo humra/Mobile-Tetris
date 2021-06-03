@@ -70,12 +70,14 @@ public class PlayAreaManager : MonoBehaviour
                 if (playAreaGrid[x, y] != null)
                 {
                     playAreaGrid[x, y - 1] = playAreaGrid[x, y];
-                    playAreaGrid[x, y] = null;
+                    playAreaGrid[x, y] = playAreaGrid[x, y + 1];
 
                     playAreaGrid[x, y - 1].position += new Vector3(0, -1, 0);
                 }
             }
         }
+
+        RemoveFilledRows();
     }
 
     //Rotating the game piece sometimes results in non-round numbers such as 1.00000001
