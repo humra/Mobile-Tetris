@@ -1,0 +1,51 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UI;
+
+public class UIManager : MonoBehaviour
+{
+    [SerializeField]
+    private GameObject gameUI;
+    [SerializeField]
+    private GameObject pauseUI;
+    [SerializeField]
+    private GameObject gameOverUI;
+    [SerializeField]
+    private Text scoreTxt;
+    [SerializeField]
+    private Text gameOverScoreTxt;
+
+    private int score = 0;
+
+    public void TogglePauseUI()
+    {
+        pauseUI.SetActive(!pauseUI.activeSelf);
+    }
+
+    public void ToggleGameOverUI()
+    {
+        gameOverUI.SetActive(!gameOverUI.activeSelf);
+    }
+
+    public void ToggleGameUI()
+    {
+        gameUI.SetActive(!gameUI.activeSelf);
+    }
+
+    public void UpdateGameUI()
+    {
+        scoreTxt.text = score.ToString();
+    }
+
+    public void AddScore(int score)
+    {
+        this.score += score;
+    }
+
+    public void GameOver()
+    {
+        gameOverScoreTxt.text = "You scored " + score;
+        ToggleGameOverUI();
+    }
+}

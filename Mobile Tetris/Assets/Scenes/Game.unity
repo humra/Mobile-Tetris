@@ -827,6 +827,7 @@ GameObject:
   - component: {fileID: 591076630}
   - component: {fileID: 591076632}
   - component: {fileID: 591076633}
+  - component: {fileID: 591076634}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -860,16 +861,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76e3ff3dac556d2479a2d65fa4df4664, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameUI: {fileID: 2126159711}
-  pauseUI: {fileID: 205658638}
-  gameOverUI: {fileID: 1508861848}
-  scoreTxt: {fileID: 1845070292}
   playAreaManager: {fileID: 591076629}
   inputManager: {fileID: 591076631}
   swipeDetection: {fileID: 591076630}
   spawner: {fileID: 12117850}
   soundEffectManager: {fileID: 591076633}
-  gameOverScoreTxt: {fileID: 1060282488}
+  uiManager: {fileID: 591076634}
 --- !u!114 &591076629
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -897,7 +894,7 @@ MonoBehaviour:
   minimumSwipeDistance: 0.5
   maximumSwipeDuration: 1
   inputManager: {fileID: 591076631}
-  directionThreshold: 0.8
+  directionThreshold: 0.75
 --- !u!114 &591076631
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -947,6 +944,23 @@ MonoBehaviour:
   soundOffSprite: {fileID: 21300000, guid: 6e96c926efe0ec546abd7009cb0e4e8c, type: 3}
   musicBtn: {fileID: 426549382}
   soundBtn: {fileID: 1742019384}
+--- !u!114 &591076634
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 591076626}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b2afa73ca3e00f48ad4ca2b4f53fa6d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameUI: {fileID: 2126159711}
+  pauseUI: {fileID: 205658638}
+  gameOverUI: {fileID: 1508861848}
+  scoreTxt: {fileID: 1845070292}
+  gameOverScoreTxt: {fileID: 1060282488}
 --- !u!1 &794165632
 GameObject:
   m_ObjectHideFlags: 0

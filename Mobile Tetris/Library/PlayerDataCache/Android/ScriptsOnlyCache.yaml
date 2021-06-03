@@ -9,6 +9,7 @@ ScriptsOnlyBuild:
     - SoundEffectManager
     - Spawner
     - SwipeDetection
+    - UIManager
     Unity.2D.Animation.Editor.dll:
     - UnityEditor.U2D.Animation.BoneGizmo
     Unity.2D.IK.Editor.dll:
@@ -99,6 +100,8 @@ ScriptsOnlyBuild:
       Script: {instanceID: 5522}
     - Class: 114
       Script: {instanceID: 5736}
+    - Class: 114
+      Script: {instanceID: 18358}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -843,7 +846,7 @@ ScriptsOnlyBuild:
     className: OnScreenStick
   - hash:
       serializedVersion: 2
-      Hash: 3d94e4ec881bd859be6f920e0136b00c
+      Hash: 09b5e43a4cdcaca32f64ae403b7192e2
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: GameManager
@@ -919,6 +922,12 @@ ScriptsOnlyBuild:
     assemblyName: Unity.2D.IK.Runtime.dll
     namespaceName: UnityEngine.U2D.IK
     className: FabrikSolver2D
+  - hash:
+      serializedVersion: 2
+      Hash: 5e18edb2fff8b851a31ba01576097134
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: UIManager
   platform: 13
   scenePathNames:
   - Assets/Scenes/Main Menu.unity

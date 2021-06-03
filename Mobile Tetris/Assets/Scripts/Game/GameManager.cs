@@ -1,17 +1,9 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour, IActivePieceControl, ISwipeDetectionControl
 {
-    [SerializeField]
-    private GameObject gameUI;
-    [SerializeField]
-    private GameObject pauseUI;
-    [SerializeField]
-    private GameObject gameOverUI;
-    [SerializeField]
-    private Text scoreTxt;
+    
     [SerializeField]
     private PlayAreaManager playAreaManager;
     [SerializeField]
@@ -23,59 +15,40 @@ public class GameManager : MonoBehaviour, IActivePieceControl, ISwipeDetectionCo
     [SerializeField]
     private SoundEffectManager soundEffectManager;
     [SerializeField]
-    private Text gameOverScoreTxt;
+    private UIManager uiManager;
 
     private ActivePieceManager activePieceManager;
     private bool isGamePaused = false;
-    private int score = 0;
+    
 
     private void Awake()
     {
+        Time.timeScale = 1f;
         swipeDetection.swipeDetectionControl = this;
     }
 
     private void Start()
     {
-        TogglePauseUI();
-        ToggleGameOverUI();
+        uiManager.TogglePauseUI();
+        uiManager.ToggleGameOverUI();
         SpawnNextPiece();
-        UpdateGameUI();
-    }
-
-    private void TogglePauseUI()
-    {
-        pauseUI.SetActive(!pauseUI.activeSelf);
-    }
-
-    private void ToggleGameOverUI()
-    {
-        gameOverUI.SetActive(!gameOverUI.activeSelf);
-    }
-
-    private void ToggleGameUI()
-    {
-        gameUI.SetActive(!gameUI.activeSelf);
-    }
-
-    private void UpdateGameUI()
-    {
-        scoreTxt.text = score.ToString();
+        uiManager.UpdateGameUI();
     }
 
     public void PauseGame()
     {
         isGamePaused = true;
         activePieceManager.SetPaused(isGamePaused);
-        TogglePauseUI();
-        ToggleGameUI();
+        uiManager.TogglePauseUI();
+        uiManager.ToggleGameUI();
     }
 
     public void ResumeGame()
     {
         isGamePaused = false;
         activePieceManager.SetPaused(isGamePaused);
-        TogglePauseUI();
-        ToggleGameUI();
+        uiManager.TogglePauseUI();
+        uiManager.ToggleGameUI();
     }
 
     public void RestartGame()
@@ -100,9 +73,9 @@ public class GameManager : MonoBehaviour, IActivePieceControl, ISwipeDetectionCo
         isGamePaused = true;
         activePieceManager.SetPaused(true);
         soundEffectManager.PlaySoundEffect(SoundEffects.GameOver);
-        ToggleGameUI();
-        gameOverScoreTxt.text = "You scored " + score;
-        ToggleGameOverUI();
+        uiManager.ToggleGameUI();
+        uiManager.GameOver();
+        Time.timeScale = 0f;
     }
 
     public void RowsRemoved(int numberRemoved)
@@ -117,20 +90,20 @@ public class GameManager : MonoBehaviour, IActivePieceControl, ISwipeDetectionCo
             case 0:
                 break;
             case 1:
-                score += 100;
+                uiManager.AddScore(100);
                 break;
             case 2:
-                score += 400;
+                uiManager.AddScore(400);
                 break;
             case 3:
-                score += 1000;
+                uiManager.AddScore(1000);
                 break;
             default:
-                score += 3000;
+                uiManager.AddScore(3000);
                 break;
         }
 
-        UpdateGameUI();
+        uiManager.UpdateGameUI();
     }
 
     public void MovePiece(MoveDirection moveDirection)
