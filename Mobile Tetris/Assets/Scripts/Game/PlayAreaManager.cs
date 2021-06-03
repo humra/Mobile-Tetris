@@ -63,14 +63,14 @@ public class PlayAreaManager : MonoBehaviour
 
     public static void DropDownRows(int removedRowIndex)
     {
-        for(int x = 0; x < fieldWidth; x++)
+        for(int y = removedRowIndex + 1; y < fieldHeight - 2; y++)
         {
-            for(int y = removedRowIndex; y < fieldHeight; y++)
+            for(int x = 0; x < fieldWidth; x++)
             {
-                if (playAreaGrid[x, y] != null)
+                if(playAreaGrid[x, y] != null)
                 {
                     playAreaGrid[x, y - 1] = playAreaGrid[x, y];
-                    playAreaGrid[x, y] = playAreaGrid[x, y + 1];
+                    playAreaGrid[x, y] = null;
 
                     playAreaGrid[x, y - 1].position += new Vector3(0, -1, 0);
                 }

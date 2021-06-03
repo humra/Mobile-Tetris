@@ -170,7 +170,14 @@ public class ActivePieceManager : MonoBehaviour
                 break;
 
             case MoveDirection.DropFast:
-                autoFallInterval = 0.05f;
+                if(autoFallInterval < defaultAutoFallInterval)
+                {
+                    autoFallInterval = defaultAutoFallInterval;
+                }
+                else
+                {
+                    autoFallInterval = 0.1f;
+                }
                 break;
         }
     }
@@ -178,11 +185,6 @@ public class ActivePieceManager : MonoBehaviour
     public void SetPaused(bool paused)
     {
         isGamePaused = paused;
-    }
-
-    public void SetAutoFallInterval(float autoFallIntervalFactor)
-    {
-        autoFallInterval *= autoFallIntervalFactor;
     }
 }
 
