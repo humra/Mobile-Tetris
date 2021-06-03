@@ -66,6 +66,7 @@ public class GameManager : MonoBehaviour, IActivePieceControl, ISwipeDetectionCo
         GameObject newPiece = spawner.SpawnPiece();
         activePieceManager = newPiece.GetComponent<ActivePieceManager>();
         activePieceManager.activePieceControl = this;
+        uiManager.SetNextPieceImage(spawner.GetNextPieceIndex());
     }
 
     public void GameOver()

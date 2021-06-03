@@ -15,6 +15,10 @@ public class UIManager : MonoBehaviour
     private Text scoreTxt;
     [SerializeField]
     private Text gameOverScoreTxt;
+    [SerializeField]
+    private Image nextPieceImg;
+    [SerializeField]
+    private Sprite[] gamePieceSprites;
 
     private int score = 0;
 
@@ -47,5 +51,10 @@ public class UIManager : MonoBehaviour
     {
         gameOverScoreTxt.text = "You scored " + score;
         ToggleGameOverUI();
+    }
+
+    public void SetNextPieceImage(int index)
+    {
+        nextPieceImg.sprite = gamePieceSprites[index];
     }
 }

@@ -7,7 +7,7 @@ public class PlayAreaManager : MonoBehaviour
     private static int rowsRemoved = 0;
 
     public static readonly int fieldWidth = 10;
-    public static readonly int fieldHeight = 21;
+    public static readonly int fieldHeight = 23;
     public static Transform[,] playAreaGrid = new Transform[fieldWidth, fieldHeight];
 
     public static bool IsInsideBorder(int x, int y)
@@ -17,7 +17,7 @@ public class PlayAreaManager : MonoBehaviour
 
     public static bool IsOutOfBounds(int x, int y)
     {
-        return (x < 0 || x > fieldWidth || y >= fieldHeight + 2);
+        return (x < 0 || x > fieldWidth || y >= fieldHeight - 2);
     }
 
     public static int RemoveFilledRows()
