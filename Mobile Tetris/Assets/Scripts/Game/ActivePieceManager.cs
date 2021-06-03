@@ -14,7 +14,7 @@ public class ActivePieceManager : MonoBehaviour
     private void Start()
     {
         defaultAutoFallInterval = autoFallInterval;
-        if(!IsAllowedSpawn())
+        if(!IsValidGridPosition())
         {
             activePieceControl.GameOver();
         }
@@ -26,21 +26,6 @@ public class ActivePieceManager : MonoBehaviour
         {
             MovePiece(MoveDirection.Drop);
         }
-    }
-
-    private bool IsAllowedSpawn()
-    {
-        foreach(Transform child in this.transform)
-        {
-            Vector2 childVector = PlayAreaManager.FixVector2(child.position);
-
-            if(PlayAreaManager.playAreaGrid[(int)childVector.x, (int)childVector.y] != null)
-            {
-                return false;
-            }
-        }
-
-        return true;
     }
 
     private bool IsValidGridPosition()
@@ -144,14 +129,16 @@ public class ActivePieceManager : MonoBehaviour
                 {
                     transform.position += new Vector3(0, 1, 0);
                     activePieceControl.RowsRemoved(PlayAreaManager.RemoveFilledRows());
-                    activePieceControl.SpawnNextPiece();
-                    
+
                     if(IsOutOfBounds())
                     {
                         activePieceControl.GameOver();
                     }
+                    else
+                    {
+                        activePieceControl.SpawnNextPiece();
+                    }
 
-                    UpdatePlayAreaGrid();
                     this.enabled = false;
                 }
                 lastFall = Time.time;

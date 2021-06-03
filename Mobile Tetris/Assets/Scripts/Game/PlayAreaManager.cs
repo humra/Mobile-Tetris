@@ -10,6 +10,8 @@ public class PlayAreaManager : MonoBehaviour
     public static readonly int fieldHeight = 23;
     public static Transform[,] playAreaGrid = new Transform[fieldWidth, fieldHeight];
 
+    private static int yOffset = 2;
+
     public static bool IsInsideBorder(int x, int y)
     {
         return (x >= 0 && x < fieldWidth && y >= 0);
@@ -17,31 +19,32 @@ public class PlayAreaManager : MonoBehaviour
 
     public static bool IsOutOfBounds(int x, int y)
     {
-        return (x < 0 || x > fieldWidth || y >= fieldHeight - 2);
+        return (x < 0 || x > fieldWidth || y >= fieldHeight - yOffset);
     }
 
     public static int RemoveFilledRows()
     {
         rowsRemoved = 0;
 
-        for(int y = 0; y < fieldHeight; y++)
+        for (int y = 0; y < fieldHeight - yOffset; ++y)
         {
-            if(IsRowFilled(y))
+            if (IsRowFilled(y))
             {
                 DeleteRow(y);
-                rowsRemoved++;
+                DropRowsAbove(y + 1);
                 y--;
+                rowsRemoved++;
             }
         }
 
         return rowsRemoved;
     }
 
-    public static bool IsRowFilled(int rowIndex)
+    public static bool IsRowFilled(int y)
     {
-        for(int x = 0; x < fieldWidth; x++)
+        for (int x = 0; x < fieldWidth; ++x)
         {
-            if(playAreaGrid[x, rowIndex] == null)
+            if (playAreaGrid[x, y] == null)
             {
                 return false;
             }
@@ -50,34 +53,37 @@ public class PlayAreaManager : MonoBehaviour
         return true;
     }
 
-    public static void DeleteRow(int rowIndex)
+    public static void DeleteRow(int y)
     {
-        for(int x = 0; x < fieldWidth; x++)
+        for (int x = 0; x < fieldWidth; ++x)
         {
-            Destroy(playAreaGrid[x, rowIndex].gameObject);
-            playAreaGrid[x, rowIndex] = null;
+            Destroy(playAreaGrid[x, y].gameObject);
+            playAreaGrid[x, y] = null;
         }
-
-        DropDownRows(rowIndex);
     }
 
-    public static void DropDownRows(int removedRowIndex)
+    public static void DropRowsAbove(int y)
     {
-        for(int y = removedRowIndex + 1; y < fieldHeight - 2; y++)
+        for (int i = y; i < fieldHeight - yOffset; ++i)
         {
-            for(int x = 0; x < fieldWidth; x++)
-            {
-                if(playAreaGrid[x, y] != null)
-                {
-                    playAreaGrid[x, y - 1] = playAreaGrid[x, y];
-                    playAreaGrid[x, y] = null;
+            DropDownSingleRow(i);
+        }
+    }
 
-                    playAreaGrid[x, y - 1].position += new Vector3(0, -1, 0);
-                }
+    public static void DropDownSingleRow(int y)
+    {
+        for (int x = 0; x < fieldWidth; ++x)
+        {
+            if (playAreaGrid[x, y] != null)
+            {
+                // Move one towards bottom
+                playAreaGrid[x, y - 1] = playAreaGrid[x, y];
+                playAreaGrid[x, y] = null;
+
+                // Update Block position
+                playAreaGrid[x, y - 1].position += new Vector3(0, -1, 0);
             }
         }
-
-        RemoveFilledRows();
     }
 
     //Rotating the game piece sometimes results in non-round numbers such as 1.00000001
