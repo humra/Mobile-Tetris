@@ -68,7 +68,6 @@ public class ActivePieceManager : MonoBehaviour
 
     private void UpdatePlayAreaGrid()
     {
-        //Removes old children from playAreaGrid
         for(int y = 0; y < PlayAreaManager.fieldHeight; ++y)
         {
             for(int x = 0; x < PlayAreaManager.fieldWidth; ++x)
@@ -83,7 +82,6 @@ public class ActivePieceManager : MonoBehaviour
             }
         }
 
-        //Adds new children to the playAreaGrid
         foreach(Transform child in transform)
         {
             Vector2 childVector = PlayAreaManager.FixVector2(child.position);

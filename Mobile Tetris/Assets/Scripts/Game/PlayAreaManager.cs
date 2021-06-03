@@ -1,16 +1,14 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayAreaManager : MonoBehaviour
 {
     private static int rowsRemoved = 0;
+    private static int yOffset = 2; //This should always be fieldHeight - 21
 
     public static readonly int fieldWidth = 10;
     public static readonly int fieldHeight = 23;
     public static Transform[,] playAreaGrid = new Transform[fieldWidth, fieldHeight];
 
-    private static int yOffset = 2;
 
     public static bool IsInsideBorder(int x, int y)
     {
@@ -76,11 +74,8 @@ public class PlayAreaManager : MonoBehaviour
         {
             if (playAreaGrid[x, y] != null)
             {
-                // Move one towards bottom
                 playAreaGrid[x, y - 1] = playAreaGrid[x, y];
                 playAreaGrid[x, y] = null;
-
-                // Update Block position
                 playAreaGrid[x, y - 1].position += new Vector3(0, -1, 0);
             }
         }
