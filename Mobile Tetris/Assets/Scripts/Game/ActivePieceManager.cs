@@ -149,6 +149,7 @@ public class ActivePieceManager : MonoBehaviour
                         activePieceControl.GameOver();
                     }
 
+                    UpdatePlayAreaGrid();
                     this.enabled = false;
                 }
                 lastFall = Time.time;

@@ -21,7 +21,7 @@ public class UIManager : MonoBehaviour
     private Sprite[] gamePieceSprites;
 
     private int score = 0;
-
+    
     public void TogglePauseUI()
     {
         pauseUI.SetActive(!pauseUI.activeSelf);
